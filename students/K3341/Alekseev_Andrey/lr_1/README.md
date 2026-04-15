@@ -26,9 +26,16 @@
 ## Практики 1.1–1.3
 
 Реализованы в отдельных папках:
-- `practices/1_1`
-- `practices/1_2`
-- `practices/1_3`
+- [practices/1_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/practices/1_1)
+- [practices/1_2](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/practices/1_2)
+- [practices/1_3](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/practices/1_3)
+
+## Итоговый отчет
+
+- GitHub Pages: [Personal Finance API - Lab Report](https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/)
+- Исходники отчета MkDocs: [docs](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/docs)
+- Финальная версия кода лабораторной: [students/K3341/Alekseev_Andrey/lr_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1)
+- Коммит с выполненной лабораторной: [d974d0b](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/d974d0b9a5b73e41642245dd6266df6bed6f82a3)
 
 ## Запуск
 
@@ -48,20 +55,20 @@ alembic upgrade head
 ```
 6. Запустить сервер:
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --reload
 ```
 
 Swagger: `http://127.0.0.1:8000/docs`
 
 ## Docker Compose
 
-Файл [docker-compose.yml](/home/pxdkxvan/ITMO/WEB/lab1/docker-compose.yml) поднимает PostgreSQL 16 и создает БД/пользователя из `.env`:
+Файл [docker-compose.yml](docker-compose.yml) поднимает PostgreSQL 16 и создает БД/пользователя из `.env`:
 - `POSTGRES_DB`
 - `POSTGRES_USER`
 - `POSTGRES_PASSWORD`
 - `POSTGRES_PORT`
 
-`Settings` читает `DATABASE_URL` из `.env` через `python-dotenv` в [config.py](/home/pxdkxvan/ITMO/WEB/lab1/app/core/config.py).
+`Settings` читает `DATABASE_URL` из `.env` через `python-dotenv` в [app/core/config.py](app/core/config.py).
 
 ## Основные эндпоинты
 

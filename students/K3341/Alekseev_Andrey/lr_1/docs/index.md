@@ -3,6 +3,8 @@
 Основная страница отчета для сдачи:
 
 - [Финальный отчет](final_report.md)
+- [GitHub Pages](https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/)
+- [Исходники лабораторной на GitHub](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1)
 
 Детальная техническая документация:
 
@@ -15,7 +17,7 @@
 Запуск локального просмотра:
 
 ```bash
-pip install mkdocs
+pip install -r requirements.txt
 mkdocs serve
 ```
 

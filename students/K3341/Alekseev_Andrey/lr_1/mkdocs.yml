@@ -1,6 +1,10 @@
 site_name: Personal Finance API - Lab Report
 site_description: Technical documentation for ITMO Web Development lab
-site_author: Student
+site_author: Alekseev Andrey
+site_url: https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/
+repo_url: https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026
+repo_name: pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026
+edit_uri: blob/main/students/K3341/Alekseev_Andrey/lr_1/docs/
 
 theme:
   name: mkdocs

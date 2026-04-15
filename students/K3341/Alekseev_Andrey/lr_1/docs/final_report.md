@@ -5,7 +5,7 @@
 - GitHub Pages: [Personal Finance API - Lab Report](https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/)
 - Исходники лабораторной: [students/K3341/Alekseev_Andrey/lr_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1)
 - Ветка сдачи: [main](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main)
-- Коммит сдачи: [d974d0b](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/d974d0b9a5b73e41642245dd6266df6bed6f82a3)
+- Коммит сдачи: [ef984e8](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/ef984e8798b634fe960ebe7e30220012356ffa97)
 
 ## 1. Реализованные эндпоинты
 
@@ -68,15 +68,15 @@
 - Практика 1.1 (папка/ветка/коммит):
   - [папка practices/1_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/practices/1_1)
   - [ветка main](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main)
-  - [коммит d974d0b](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/d974d0b9a5b73e41642245dd6266df6bed6f82a3)
+  - [коммит ef984e8](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/ef984e8798b634fe960ebe7e30220012356ffa97)
 - Практика 1.2 (папка/ветка/коммит):
   - [папка practices/1_2](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/practices/1_2)
   - [ветка main](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main)
-  - [коммит d974d0b](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/d974d0b9a5b73e41642245dd6266df6bed6f82a3)
+  - [коммит ef984e8](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/ef984e8798b634fe960ebe7e30220012356ffa97)
 - Практика 1.3 (папка/ветка/коммит):
   - [папка practices/1_3](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1/practices/1_3)
   - [ветка main](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main)
-  - [коммит d974d0b](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/d974d0b9a5b73e41642245dd6266df6bed6f82a3)
+  - [коммит ef984e8](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/ef984e8798b634fe960ebe7e30220012356ffa97)
 
 Материалы практик в проекте:
 

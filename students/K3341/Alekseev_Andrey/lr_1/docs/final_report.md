@@ -5,7 +5,7 @@
 - GitHub Pages: [Personal Finance API - Lab Report](https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/)
 - Исходники лабораторной: [students/K3341/Alekseev_Andrey/lr_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1)
 - Ветка сдачи: [main](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main)
-- Коммит сдачи: [ef984e8](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/ef984e8798b634fe960ebe7e30220012356ffa97)
+- Коммит с реализацией API и отчетом: [ef984e8](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/commit/ef984e8798b634fe960ebe7e30220012356ffa97)
 
 ## 1. Реализованные эндпоинты
 

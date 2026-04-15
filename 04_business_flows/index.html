@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Alekseev Andrey">
+        <link rel="canonical" href="https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/04_business_flows/">
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Бизнес-логика и сценарии - Personal Finance API - Lab Report</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/fontawesome.min.css" rel="stylesheet">
+        <link href="../css/brands.min.css" rel="stylesheet">
+        <link href="../css/solid.min.css" rel="stylesheet">
+        <link href="../css/v4-font-face.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link id="hljs-light" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" >
+        <link id="hljs-dark" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css" disabled>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="..">Personal Finance API - Lab Report</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a href=".." class="nav-link">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../final_report/" class="nav-link">Финальный отчет</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../01_architecture/" class="nav-link">Архитектура</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../02_database/" class="nav-link">База данных</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../03_http_api/" class="nav-link">HTTP API</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="./" class="nav-link active" aria-current="page">Бизнес-логика и сценарии</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../05_change_navigation/" class="nav-link">Навигация по изменениям</a>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ms-md-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-bs-toggle="modal" data-bs-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../03_http_api/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../05_change_navigation/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/blob/main/students/K3341/Alekseev_Andrey/lr_1/docs/04_business_flows.md" class="nav-link">Edit on pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026
+                                    </a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-bs-toggle="collapse" data-bs-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-body-tertiary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-bs-level="1"><a href="#-" class="nav-link">Бизнес-логика и цепочки вызовов</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-bs-level="2"><a href="#_1" class="nav-link">Где находится логика</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_2" class="nav-link">Цепочка вызовов (на примерах)</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#sqlorm" class="nav-link">SQL/ORM паттерны, которые используются в проекте</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-bs-level="2"><a href="#_3" class="nav-link">Предположения и неочевидные моменты</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="-">Бизнес-логика и цепочки вызовов</h1>
+<p>В текущем проекте отдельного service-слоя нет. Поэтому фактическая цепочка выглядит так:</p>
+<p><code>endpoint (app/api/routes/*.py) -&gt; helper-функции (локальные) -&gt; SQLModel Session -&gt; PostgreSQL</code>.</p>
+<p>Это важное архитектурное наблюдение: если в задаче ожидается явный слой <code>services</code>, сейчас его роль выполняют функции роутеров.</p>
+<h2 id="_1">Где находится логика</h2>
+<ul>
+<li>Авторизация и криптография: <code>app/core/security.py</code></li>
+<li>Доступ к текущему пользователю (auth gate): <code>app/api/deps.py::get_current_user</code></li>
+<li>Доменные операции CRUD: <code>app/api/routes/*.py</code></li>
+<li>ORM-модели и связи: <code>app/models/entities.py</code></li>
+<li>Валидация payload/response: <code>app/schemas/*.py</code></li>
+</ul>
+<h2 id="_2">Цепочка вызовов (на примерах)</h2>
+<h3 id="1">1) Регистрация пользователя</h3>
+<ol>
+<li>Клиент вызывает <code>POST /api/v1/auth/register</code>.</li>
+<li><code>auth.py::register(payload, session)</code> валидирует body через <code>RegisterRequest</code>.</li>
+<li>Через <code>session.exec(select(User).where(User.email == payload.email)).first()</code> проверяется уникальность email.</li>
+<li>Пароль хэшируется <code>security.py::hash_password</code>.</li>
+<li>Создается <code>User(...)</code>, затем <code>session.add -&gt; commit -&gt; refresh</code>.</li>
+<li>Возврат в <code>response_model=UserRead</code>.</li>
+</ol>
+<h3 id="2-jwt">2) Вход и получение JWT</h3>
+<ol>
+<li><code>POST /api/v1/auth/login</code> с email+password.</li>
+<li><code>auth.py::login</code> читает пользователя из БД.</li>
+<li>Пароль проверяется <code>verify_password</code>.</li>
+<li>Создается токен <code>create_access_token(str(user.id))</code>.</li>
+<li>Возвращается <code>TokenResponse</code>.</li>
+</ol>
+<h3 id="3">3) Создание транзакции и вложенный ответ</h3>
+<ol>
+<li><code>POST /api/v1/transactions</code>.</li>
+<li><code>transactions.py::create_transaction</code> получает <code>CurrentUserDep</code> и <code>SessionDep</code>.</li>
+<li>Проверка категории: <code>session.get(Category, payload.category_id)</code> + сверка <code>category.user_id == current_user.id</code>.</li>
+<li>Создание <code>Transaction(...)</code>, сохранение (<code>add/commit/refresh</code>).</li>
+<li>Построение вложенного ответа через <code>_build_transaction_read(tx, session)</code>:</li>
+<li>подгрузка категории;</li>
+<li>выборка link-таблицы <code>TransactionTagLink</code>;</li>
+<li>подгрузка тегов и сборка <code>TransactionTagRead</code>.</li>
+<li>Клиент получает <code>TransactionRead</code> с вложенными объектами.</li>
+</ol>
+<h3 id="4-many-to-many">4) Привязка тега к транзакции (many-to-many + атрибут связи)</h3>
+<ol>
+<li><code>POST /api/v1/transactions/{transaction_id}/tags</code>.</li>
+<li>Проверяется существование и ownership транзакции/тега.</li>
+<li><code>session.get(TransactionTagLink, (transaction_id, payload.tag_id))</code>:</li>
+<li>если link найден, обновляются <code>importance</code> и <code>note</code>;</li>
+<li>иначе создается новый <code>TransactionTagLink</code>.</li>
+<li><code>session.add(link)</code> и <code>commit</code>.</li>
+<li>Возвращается обновленный <code>TransactionRead</code>.</li>
+</ol>
+<h3 id="5">5) Отчет по месяцу</h3>
+<ol>
+<li><code>GET /api/v1/reports/summary?month=YYYY-MM</code>.</li>
+<li><code>reports.py::monthly_summary</code> вычисляет <code>date</code>-границы через <code>_month_start/_next_month</code>.</li>
+<li>SQLModel <code>select(Transaction).where(...)</code> получает транзакции пользователя в диапазоне дат.</li>
+<li>Python-агрегация считает итоги доходов/расходов и map расходов по категориям.</li>
+<li>Возвращается <code>MonthlySummaryRead</code>.</li>
+</ol>
+<h2 id="sqlorm">SQL/ORM паттерны, которые используются в проекте</h2>
+<ul>
+<li>выборка списка: <code>session.exec(select(Model).where(...)).all()</code>;</li>
+<li>выборка одиночной сущности по PK: <code>session.get(Model, id)</code>;</li>
+<li>создание: <code>session.add(...)</code>, <code>commit</code>, <code>refresh</code>;</li>
+<li>обновление: <code>payload.model_dump(exclude_unset=True)</code> + <code>setattr(...)</code> + <code>commit</code>;</li>
+<li>удаление: <code>session.delete(...)</code>, <code>commit</code>.</li>
+</ul>
+<p>Прямых SQL-строк нет, кроме DDL в Alembic-миграции.</p>
+<h2 id="_3">Предположения и неочевидные моменты</h2>
+<ul>
+<li>Предположение: проект ориентирован на single-process API без фоновых воркеров; это следует из отсутствия очередей/tasks.</li>
+<li>Неочевидность: <code>reports</code> не валидирует формат <code>month</code> на уровне схемы, поэтому некорректные значения могут приводить к <code>500</code>.</li>
+<li>Неочевидность: удаление <code>Category</code>/<code>Tag</code>/<code>Budget</code> опирается на дефолтное поведение FK в PostgreSQL и SQLModel без явного <code>cascade</code> в моделях.</li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script src="../js/bootstrap.bundle.min.js"></script>
+        <script>
+            var base_url = "..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,0 +1,13 @@
+.idea
+.vscode
+__pycache__
+.pytest_cache
+.mypy_cache
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+venv
+.venv
+*.env

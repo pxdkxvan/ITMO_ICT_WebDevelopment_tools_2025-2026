@@ -16,14 +16,14 @@ theme:
     code: JetBrains Mono
   palette:
     - scheme: default
-      primary: teal
-      accent: amber
+      primary: black
+      accent: cyan
       toggle:
         icon: material/weather-night
         name: Темная тема
     - scheme: slate
-      primary: teal
-      accent: amber
+      primary: black
+      accent: cyan
       toggle:
         icon: material/weather-sunny
         name: Светлая тема
@@ -31,9 +31,9 @@ theme:
     - navigation.instant
     - navigation.instant.progress
     - navigation.tracking
-    - navigation.tabs
     - navigation.sections
     - navigation.top
+    - toc.follow
     - search.highlight
     - search.suggest
     - content.code.copy
@@ -59,6 +59,9 @@ markdown_extensions:
   - pymdownx.snippets
   - pymdownx.tabbed:
       alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 nav:
   - Главная: index.md

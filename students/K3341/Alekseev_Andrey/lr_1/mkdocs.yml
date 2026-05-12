@@ -1,5 +1,5 @@
-site_name: Personal Finance API - Lab Report
-site_description: Technical documentation for ITMO Web Development lab
+site_name: ITMO Web Development Labs
+site_description: Technical documentation for laboratory works 1 and 2
 site_author: Alekseev Andrey
 site_url: https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/
 repo_url: https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026
@@ -65,9 +65,15 @@ markdown_extensions:
 
 nav:
   - Главная: index.md
-  - Финальный отчет: final_report.md
-  - Архитектура: 01_architecture.md
-  - База данных: 02_database.md
-  - HTTP API: 03_http_api.md
-  - Бизнес-логика и сценарии: 04_business_flows.md
-  - Навигация по изменениям: 05_change_navigation.md
+  - Lab 1:
+      - Обзор: final_report.md
+      - Архитектура: 01_architecture.md
+      - База данных: 02_database.md
+      - HTTP API: 03_http_api.md
+      - Бизнес-логика и сценарии: 04_business_flows.md
+      - Навигация по изменениям: 05_change_navigation.md
+  - Lab 2:
+      - Обзор: lab2/index.md
+      - Реализация: lab2/implementation.md
+      - Замеры и анализ: lab2/benchmarks.md
+      - Работа с БД: lab2/database_usage.md

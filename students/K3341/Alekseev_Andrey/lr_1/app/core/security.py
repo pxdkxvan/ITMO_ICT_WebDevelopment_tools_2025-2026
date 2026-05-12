@@ -14,7 +14,7 @@ from app.core.config import settings
 def hash_password(password: str) -> str:
     salt = os.urandom(16)
     digest = hashlib.pbkdf2_hmac("sha256", password.encode("utf-8"), salt, 100_000)
-    return f"{base64.b64encodeDj(salt).decode()}${base64.b64encode(digest).decode()}"
+    return f"{base64.b64encode(salt).decode()}${base64.b64encode(digest).decode()}"
 
 
 def verify_password(password: str, hashed_password: str) -> bool:

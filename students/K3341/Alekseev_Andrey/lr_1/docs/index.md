@@ -1,70 +1,53 @@
-# Personal Finance API
+# Лабораторные работы
 
-Финальный отчет по лабораторной работе: FastAPI-сервис для управления личными финансами с PostgreSQL, SQLModel, Alembic и JWT-авторизацией.
+На GitHub Pages опубликованы материалы по двум лабораторным работам курса `Web Development Tools`.
 
-[Открыть финальный отчет](final_report.md){ .md-button .md-button--primary }
-[Код на GitHub](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1){ .md-button }
+[Lab 1](final_report.md){ .md-button .md-button--primary }
+[Lab 2](lab2/index.md){ .md-button .md-button--primary }
+[Репозиторий](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey){ .md-button }
 
-## Разделы отчета
+## Разделы
 
 <div class="grid cards" markdown>
 
--   **Финальный отчет**
+-   **Lab 1**
 
-    Обязательные материалы для сдачи: эндпоинты, модели, подключение к БД и ссылки на практики.
+    FastAPI-сервис для управления личными финансами: API, модели, PostgreSQL, Alembic и JWT.
 
     [Перейти](final_report.md)
 
--   **HTTP API**
+-   **Lab 2**
 
-    Полный каталог реализованных ручек, параметры запросов, JSON-примеры и ошибки.
+    Сравнение `threading`, `multiprocessing` и `asyncio` на вычислениях и параллельном парсинге.
+
+    [Перейти](lab2/index.md)
+
+-   **HTTP API Lab 1**
+
+    Полный каталог ручек первой лабораторной с примерами запросов и ответов.
 
     [Перейти](03_http_api.md)
 
--   **База данных**
+-   **Замеры Lab 2**
 
-    Таблицы, связи, ограничения, миграции и ER-диаграмма.
+    Таблицы времени выполнения и разбор того, почему подходы показывают разный результат.
 
-    [Перейти](02_database.md)
-
--   **Архитектура**
-
-    Слои приложения, зависимости, схемы, модели и общий поток запроса.
-
-    [Перейти](01_architecture.md)
-
--   **Бизнес-сценарии**
-
-    Регистрация, транзакции, теги, бюджеты, цели и отчеты.
-
-    [Перейти](04_business_flows.md)
-
--   **Навигация по изменениям**
-
-    Куда идти при изменении API, бизнес-логики, моделей и окружения.
-
-    [Перейти](05_change_navigation.md)
+    [Перейти](lab2/benchmarks.md)
 
 </div>
 
-## Статус проекта
+## Статус
 
 | Блок | Состояние |
 | --- | --- |
 | GitHub Pages | [опубликовано](https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/) |
-| Исходники | [папка лабораторной](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1) |
-| API | FastAPI + JWT |
-| БД | PostgreSQL + SQLModel + Alembic |
+| Lab 1 | [students/K3341/Alekseev_Andrey/lr_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1) |
+| Lab 2 | [students/K3341/Alekseev_Andrey/lr_2](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_2) |
+| Основной стек | Python, FastAPI, PostgreSQL, asyncio, threading, multiprocessing |
 
 ## Запуск документации локально
 
 ```bash
 pip install -r requirements.txt
 mkdocs serve
-```
-
-## Сборка
-
-```bash
-mkdocs build
 ```

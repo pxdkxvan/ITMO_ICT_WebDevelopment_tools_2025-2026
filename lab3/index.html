@@ -12,13 +12,13 @@
         <meta name="author" content="Alekseev Andrey">
       
       
-        <link rel="canonical" href="https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/lab2/">
+        <link rel="canonical" href="https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/lab3/">
       
       
-        <link rel="prev" href="../05_change_navigation/">
+        <link rel="prev" href="../lab2/database_usage/">
       
       
-        <link rel="next" href="implementation/">
+        <link rel="next" href="architecture/">
       
       
         
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#2" class="md-skip">
+        <a href="#3" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -515,8 +515,6 @@
       
   
   
-    
-  
   
   
     
@@ -529,11 +527,11 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
         
           
           <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
@@ -554,12 +552,185 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
             
   
     Lab 2
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/implementation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Реализация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/benchmarks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Замеры и анализ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lab2/database_usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Работа с БД
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab 3
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Lab 3
   
 
           </label>
@@ -646,10 +817,38 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Что парсится
+        Основные сценарии
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Основные сценарии">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Прямой вызов парсера по HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Асинхронный вызов через очередь
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -657,7 +856,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Кратко о сохранении в БД
+        Источник данных
       
     </span>
   </a>
@@ -668,18 +867,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Быстрый запуск
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Последний проверенный результат
+        Порты
       
     </span>
   </a>
@@ -702,178 +890,7 @@
   
   
     <li class="md-nav__item">
-      <a href="implementation/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Реализация
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="benchmarks/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Замеры и анализ
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="database_usage/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Работа с БД
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-        
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
-            
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Lab 3
-  
-
-    
-  </span>
-  
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            
-  
-    Lab 3
-  
-
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../lab3/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Обзор
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../lab3/architecture/" class="md-nav__link">
+      <a href="architecture/" class="md-nav__link">
         
   
   
@@ -901,7 +918,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab3/api_and_queue/" class="md-nav__link">
+      <a href="api_and_queue/" class="md-nav__link">
         
   
   
@@ -929,7 +946,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../lab3/verification/" class="md-nav__link">
+      <a href="verification/" class="md-nav__link">
         
   
   
@@ -998,10 +1015,38 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Что парсится
+        Основные сценарии
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Основные сценарии">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-http" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Прямой вызов парсера по HTTP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Асинхронный вызов через очередь
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1009,7 +1054,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Кратко о сохранении в БД
+        Источник данных
       
     </span>
   </a>
@@ -1020,18 +1065,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Быстрый запуск
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Последний проверенный результат
+        Порты
       
     </span>
   </a>
@@ -1055,7 +1089,7 @@
 
 
   
-    <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/blob/main/students/K3341/Alekseev_Andrey/lr_1/docs/lab2/index.md" title="Редактировать страницу" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/blob/main/students/K3341/Alekseev_Andrey/lr_1/docs/lab3/index.md" title="Редактировать страницу" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -1063,65 +1097,80 @@
   
 
 
-<h1 id="2">Лабораторная работа 2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
-<p>Лабораторная работа сравнивает <code>threading</code>, <code>multiprocessing</code> и <code>asyncio</code> на двух сценариях:</p>
-<ol>
-<li>вычисление суммы чисел от <code>1</code> до <code>10_000_000_000_000</code>;</li>
-<li>параллельный парсинг HTML-страниц с сохранением результатов в PostgreSQL из <code>lr_1</code>.</li>
-</ol>
-<p>Исходный код находится в <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_2">students/K3341/Alekseev_Andrey/lr_2</a>.</p>
-<p><a class="md-button md-button--primary" href="implementation/">Открыть реализацию</a>
-<a class="md-button md-button--primary" href="benchmarks/">Открыть замеры</a>
-<a class="md-button" href="database_usage/">Работа с БД</a></p>
+<h1 id="3">Лабораторная работа 3<a class="headerlink" href="#3" title="Permanent link">&para;</a></h1>
+<p>Lab 3 объединяет результаты первых двух лабораторных:</p>
+<ul>
+<li>основной FastAPI API из <code>lr_1</code>;</li>
+<li>парсер и логику сохранения из <code>lr_2</code>;</li>
+<li>контейнеризацию через Docker;</li>
+<li>синхронный HTTP-вызов парсера;</li>
+<li>асинхронный вызов парсера через Celery и Redis.</li>
+</ul>
+<p>Исходный код находится в <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_3">students/K3341/Alekseev_Andrey/lr_3</a>.</p>
+<p><a class="md-button md-button--primary" href="architecture/">Архитектура и Docker</a>
+<a class="md-button md-button--primary" href="api_and_queue/">HTTP и очередь</a>
+<a class="md-button" href="verification/">Проверка и результаты</a></p>
 <h2 id="_1">Что реализовано<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li>три реализации Task 1: <code>threading_sum.py</code>, <code>multiprocessing_sum.py</code>, <code>asyncio_sum.py</code>;</li>
-<li>три реализации Task 2: <code>threading_parse.py</code>, <code>multiprocessing_parse.py</code>, <code>asyncio_parse.py</code>;</li>
-<li>отдельные агрегаторы <code>task1_benchmark.py</code>, <code>task2_benchmark.py</code>;</li>
-<li>общий запуск <code>benchmark.py</code>;</li>
-<li>совместимость и с <code>python -m ...</code>, и с прямым запуском <code>python lab2/...py</code>.</li>
+<li>отдельный контейнер <code>api</code> с FastAPI-приложением на базе <code>lr_1</code>;</li>
+<li>отдельный контейнер <code>parser</code> с FastAPI parser-service;</li>
+<li>отдельный контейнер <code>redis</code>;</li>
+<li>отдельный контейнер <code>celery_worker</code>;</li>
+<li>отдельный контейнер <code>postgres</code>;</li>
+<li>общий <code>docker-compose.yml</code>, который поднимает весь стек одной командой.</li>
 </ul>
-<h2 id="_2">Что парсится<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Для стабильного публичного HTML-источника используется <code>books.toscrape.com</code>:</p>
+<h2 id="_2">Основные сценарии<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="1-http">1. Прямой вызов парсера по HTTP<a class="headerlink" href="#1-http" title="Permanent link">&para;</a></h3>
+<p>Клиент вызывает основной API:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>POST /api/v1/parser/parse
+</code></pre></div>
+<p>Основной API отправляет внутренний HTTP-запрос в <code>parser-service</code>, а тот скачивает HTML, извлекает карточки и сохраняет их в PostgreSQL.</p>
+<h3 id="2">2. Асинхронный вызов через очередь<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>Клиент вызывает:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>POST /api/v1/parser/parse/queue
+</code></pre></div>
+<p>После этого:</p>
+<ol>
+<li>задача попадает в Redis;</li>
+<li>Celery worker забирает задачу;</li>
+<li>worker вызывает <code>parser-service</code>;</li>
+<li>результат доступен по <code>GET /api/v1/parser/parse/queue/{task_id}</code>.</li>
+</ol>
+<h2 id="_3">Источник данных<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Для стабильной демонстрации используется:</p>
 <ul>
 <li><code>https://books.toscrape.com/catalogue/page-1.html</code></li>
-<li><code>...</code></li>
-<li><code>https://books.toscrape.com/catalogue/page-6.html</code></li>
+<li><code>https://books.toscrape.com/catalogue/page-2.html</code></li>
+<li><code>https://books.toscrape.com/catalogue/page-3.html</code></li>
 </ul>
-<p>С каждой страницы берутся первые 5 карточек книг. Для каждой карточки сохраняются:</p>
-<ul>
-<li>заголовок;</li>
-<li>URL книги;</li>
-<li>цена;</li>
-<li>наличие;</li>
-<li>служебные метаданные о способе парсинга.</li>
-</ul>
-<h2 id="_3">Кратко о сохранении в БД<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Парсинг использует базу из <code>lr_1</code>, но не создает отдельную схему. Данные сохраняются в уже существующие таблицы:</p>
-<ul>
-<li>технический пользователь в <code>user</code>;</li>
-<li>категории страниц в <code>category</code>;</li>
-<li>признак способа парсинга в <code>tag</code>;</li>
-<li>карточки как записи в <code>transaction</code>;</li>
-<li>связь записи и тега в <code>transactiontaglink</code>.</li>
-</ul>
-<p>Такой вариант был выбран потому, что в <code>lr_1</code> уже есть готовая PostgreSQL-схема и миграции.</p>
-<h2 id="_4">Быстрый запуск<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>students/K3341/Alekseev_Andrey/lr_1
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>up<span class="w"> </span>-d
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">cd</span><span class="w"> </span>../lr_2
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.benchmark
-</code></pre></div>
-<h2 id="_5">Последний проверенный результат<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>При последнем полном прогоне:</p>
-<ul>
-<li>Task 1 завершился без ошибок во всех трех реализациях;</li>
-<li>Task 2 завершился без ошибок во всех трех реализациях;</li>
-<li>в БД было записано <code>90</code> строк <code>transaction</code> с пометкой <code>LR2 parser source:</code>.</li>
-</ul>
+<p>Парсер сохраняет первые 5 карточек со страницы.</p>
+<h2 id="_4">Порты<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Сервис</th>
+<th style="text-align: right;">Порт</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>api</code></td>
+<td style="text-align: right;"><code>8002</code></td>
+</tr>
+<tr>
+<td><code>parser</code></td>
+<td style="text-align: right;"><code>8003</code></td>
+</tr>
+<tr>
+<td><code>postgres</code></td>
+<td style="text-align: right;"><code>5433</code></td>
+</tr>
+<tr>
+<td><code>redis</code></td>
+<td style="text-align: right;"><code>6380</code></td>
+</tr>
+</tbody>
+</table>
 
 
 

@@ -688,15 +688,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#task-1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Результаты задачи 1
+        Результаты Task 1
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Результаты задачи 1">
+    <nav class="md-nav" aria-label="Результаты Task 1">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -716,15 +716,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#task-2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Результаты задачи 2
+        Результаты Task 2
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Результаты задачи 2">
+    <nav class="md-nav" aria-label="Результаты Task 2">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -747,7 +747,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Итоговое сравнение
+        Итог
       
     </span>
   </a>
@@ -758,7 +758,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Вывод
+        Что подтверждено дополнительно
       
     </span>
   </a>
@@ -836,15 +836,15 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#1" class="md-nav__link">
+  <a href="#task-1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Результаты задачи 1
+        Результаты Task 1
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Результаты задачи 1">
+    <nav class="md-nav" aria-label="Результаты Task 1">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -864,15 +864,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#2" class="md-nav__link">
+  <a href="#task-2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Результаты задачи 2
+        Результаты Task 2
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Результаты задачи 2">
+    <nav class="md-nav" aria-label="Результаты Task 2">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -895,7 +895,7 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Итоговое сравнение
+        Итог
       
     </span>
   </a>
@@ -906,7 +906,7 @@
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Вывод
+        Что подтверждено дополнительно
       
     </span>
   </a>
@@ -939,96 +939,118 @@
 
 
 <h1 id="_1">Замеры и анализ<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<p>Замеры выполнены локально <code>12 мая 2026</code> командой:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.benchmark<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span>
+<p>Замеры ниже получены локально <code>27 мая 2026</code> полным запуском:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.benchmark
 </code></pre></div>
-<h2 id="1">Результаты задачи 1<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h2 id="task-1">Результаты Task 1<a class="headerlink" href="#task-1" title="Permanent link">&para;</a></h2>
+<p>Целевой диапазон: <code>1..10 000 000 000 000</code></p>
 <table>
 <thead>
 <tr>
 <th>Подход</th>
-<th style="text-align: right;">Время</th>
+<th style="text-align: right;">Chunks</th>
+<th style="text-align: center;">Verified</th>
+<th style="text-align: right;">Time, seconds</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>threading</code></td>
-<td style="text-align: right;"><code>0.000822 s</code></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: right;"><code>0.000738</code></td>
 </tr>
 <tr>
 <td><code>multiprocessing</code></td>
-<td style="text-align: right;"><code>0.061046 s</code></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: right;"><code>0.008717</code></td>
 </tr>
 <tr>
 <td><code>asyncio</code></td>
-<td style="text-align: right;"><code>0.000067 s</code></td>
+<td style="text-align: right;">8</td>
+<td style="text-align: center;">yes</td>
+<td style="text-align: right;"><code>0.000101</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="_2">Комментарий<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <ul>
-<li>задача вычислительная, поэтому с точки зрения модели параллелизма наиболее корректен <code>multiprocessing</code></li>
-<li>в данной лабораторной сами подзадачи считаются по формуле за <code>O(1)</code>, поэтому доминируют накладные расходы на создание потоков, процессов и корутин</li>
-<li>именно поэтому в этом конкретном запуске <code>asyncio</code> и <code>threading</code> оказываются быстрее <code>multiprocessing</code></li>
+<li>задача формально CPU-bound, поэтому по смыслу корректнее всего <code>multiprocessing</code>;</li>
+<li>но каждая подзадача считает сумму по формуле за <code>O(1)</code>;</li>
+<li>из-за этого сравнивается в основном overhead создания потоков, процессов и корутин;</li>
+<li>поэтому в таком тесте <code>asyncio</code> и <code>threading</code> выглядят быстрее <code>multiprocessing</code>.</li>
 </ul>
-<h2 id="2">Результаты задачи 2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h2 id="task-2">Результаты Task 2<a class="headerlink" href="#task-2" title="Permanent link">&para;</a></h2>
+<p>Источник: 6 HTML-страниц <code>books.toscrape.com</code>, по 5 карточек с каждой страницы.</p>
 <table>
 <thead>
 <tr>
 <th>Подход</th>
-<th style="text-align: right;">Время</th>
+<th style="text-align: right;">URLs</th>
+<th style="text-align: right;">Saved tasks</th>
+<th style="text-align: right;">Errors</th>
+<th style="text-align: right;">Time, seconds</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>threading</code></td>
-<td style="text-align: right;"><code>1.412929 s</code></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><code>2.801360</code></td>
 </tr>
 <tr>
 <td><code>multiprocessing</code></td>
-<td style="text-align: right;"><code>0.966960 s</code></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><code>3.038130</code></td>
 </tr>
 <tr>
 <td><code>asyncio</code></td>
-<td style="text-align: right;"><code>0.686318 s</code></td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">30</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;"><code>1.893017</code></td>
 </tr>
 </tbody>
 </table>
 <h3 id="_3">Комментарий<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
-<li>задача сетевого ввода-вывода естественно подходит под <code>asyncio</code></li>
-<li><code>threading</code> тоже хорошо работает на I/O-bound нагрузке, но здесь уступил из-за дополнительных накладных расходов</li>
-<li><code>multiprocessing</code> показал средний результат: процессы дают избыточную стоимость для сетевого парсинга, но в конкретном запуске оказались быстрее потоков</li>
+<li>это I/O-bound задача, поэтому <code>asyncio</code> здесь наиболее естественный инструмент;</li>
+<li><code>threading</code> тоже подходит, но из-за накладных расходов оказался медленнее;</li>
+<li><code>multiprocessing</code> работает корректно, но для сетевого парсинга избыточен и показал худшее время в этом запуске.</li>
 </ul>
-<h2 id="_4">Итоговое сравнение<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h2 id="_4">Итог<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
 <th>Сценарий</th>
 <th>Лучший результат</th>
-<th>Причина</th>
+<th>Практический вывод</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Сумма чисел</td>
 <td><code>asyncio</code> в текущем замере</td>
-<td>измеряется в основном overhead, а не вычисления</td>
+<td>измеряется в основном overhead, а не вычислительная мощность</td>
 </tr>
 <tr>
 <td>Парсинг страниц</td>
 <td><code>asyncio</code></td>
-<td>конкурентные HTTP-запросы без лишних процессов</td>
+<td>конкурентный I/O без лишних процессов оказался эффективнее</td>
 </tr>
 </tbody>
 </table>
-<h2 id="_5">Вывод<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h2 id="_5">Что подтверждено дополнительно<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>threading</code> удобен и прост, особенно для умеренного I/O</li>
-<li><code>multiprocessing</code> подходит для CPU-bound задач, когда нужен реальный параллелизм по ядрам</li>
-<li><code>asyncio</code> лучше всего раскрывается на сетевых запросах и других I/O-bound сценариях</li>
+<li>полный <code>python -m lab2.benchmark</code> проходит без ошибок;</li>
+<li>все три парсера сохраняют данные в PostgreSQL;</li>
+<li>после полного прогона в БД зафиксировано <code>90</code> записей Lab 2.</li>
 </ul>
-<p>С практической точки зрения лабораторная показывает не только различия API, но и важный инженерный вывод: подход нужно выбирать под тип нагрузки, а не по общему принципу "что быстрее".</p>
 
 
 

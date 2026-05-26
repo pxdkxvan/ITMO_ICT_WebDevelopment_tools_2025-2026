@@ -728,7 +728,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Куда сохраняются данные парсинга
+        Какие таблицы задействованы
       
     </span>
   </a>
@@ -736,32 +736,71 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как данные отображаются на схему lr_1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Как данные отображаются на схему lr_1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Какой пользователь используется
+        Технический пользователь
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Как проверить записи
+        Категории
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Команды запуска с БД
+        Теги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Основные записи
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Защита от дублей
       
     </span>
   </a>
@@ -769,10 +808,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Связь с первой лабораторной
+        Как подготовить БД
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как проверить данные
       
     </span>
   </a>
@@ -836,7 +886,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Куда сохраняются данные парсинга
+        Какие таблицы задействованы
       
     </span>
   </a>
@@ -844,32 +894,71 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#lr_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как данные отображаются на схему lr_1
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Как данные отображаются на схему lr_1">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Какой пользователь используется
+        Технический пользователь
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Как проверить записи
+        Категории
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Команды запуска с БД
+        Теги
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Основные записи
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Защита от дублей
       
     </span>
   </a>
@@ -877,10 +966,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#_9" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Связь с первой лабораторной
+        Как подготовить БД
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Как проверить данные
       
     </span>
   </a>
@@ -914,62 +1014,91 @@
 
 <h1 id="_1">Работа с базой данных<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">Какая БД используется<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p>Для задачи 2 используется PostgreSQL из лабораторной работы 1:</p>
+<p>Lab 2 использует PostgreSQL из <code>lr_1</code>:</p>
 <ul>
 <li>БД: <code>finance_db</code></li>
 <li>пользователь: <code>finance_user</code></li>
-<li>подключение: <code>postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db</code></li>
+<li>URL: <code>postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db</code></li>
 </ul>
-<h2 id="_3">Куда сохраняются данные парсинга<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p>Заголовки веб-страниц сохраняются в таблицу <code>tag</code> из первой лабораторной.</p>
-<p>Причины выбора:</p>
+<h2 id="_3">Какие таблицы задействованы<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Парсер не создает отдельные таблицы, а использует схему первой лабораторной:</p>
 <ul>
-<li>у таблицы есть естественное поле <code>name</code> для хранения заголовка</li>
-<li>не нужно придумывать фиктивные денежные значения, как для <code>transaction</code>, <code>budget</code> или <code>goal</code></li>
-<li>ограничение уникальности <code>(user_id, name)</code> защищает от дублей при повторных запусках</li>
+<li><code>user</code></li>
+<li><code>category</code></li>
+<li><code>tag</code></li>
+<li><code>transaction</code></li>
+<li><code>transactiontaglink</code></li>
 </ul>
-<h2 id="_4">Какой пользователь используется<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p>Парсинг выполняется от имени технического пользователя:</p>
+<h2 id="lr_1">Как данные отображаются на схему <code>lr_1</code><a class="headerlink" href="#lr_1" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Технический пользователь<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>Создается пользователь:</p>
 <ul>
-<li><code>email</code>: <code>lab2.parser@example.com</code></li>
-<li><code>full_name</code>: <code>Lab 2 Parser</code></li>
+<li><code>email = parser_bot@example.local</code></li>
+<li><code>full_name = LR2 Parser Bot</code></li>
 </ul>
-<p>Пользователь создается через API регистрации <code>lr_1</code>, поэтому пароль хранится в виде PBKDF2-хеша, а не в открытом виде.</p>
-<h2 id="_5">Как проверить записи<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>Подключиться к PostgreSQL:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>finance_postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>finance_user<span class="w"> </span>-d<span class="w"> </span>finance_db
+<p>Этот пользователь нужен, чтобы все записи Lab 2 были изолированы от пользовательских данных <code>lr_1</code>.</p>
+<h3 id="_5">Категории<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>Для каждого источника создается <code>category</code> с <code>kind='expense'</code>, например:</p>
+<ul>
+<li><code>Books to Scrape Page 1</code></li>
+<li><code>Books to Scrape Page 2</code></li>
+</ul>
+<h3 id="_6">Теги<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Для каждого способа парсинга используется свой тег:</p>
+<ul>
+<li><code>parsed:threading</code></li>
+<li><code>parsed:multiprocessing</code></li>
+<li><code>parsed:asyncio</code></li>
+</ul>
+<h3 id="_7">Основные записи<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>Каждая распарсенная карточка сохраняется в <code>transaction</code>:</p>
+<ul>
+<li><code>amount</code> берется из цены книги;</li>
+<li><code>description</code> содержит <code>Source ID</code>, URL, способ парсинга и текстовое описание;</li>
+<li><code>transaction_date</code> ставится текущей датой;</li>
+<li><code>kind='expense'</code>.</li>
+</ul>
+<p>Связь записи и способа парсинга хранится в <code>transactiontaglink</code>.</p>
+<h2 id="_8">Защита от дублей<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<p>Для одной и той же карточки строится <code>Source ID</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lr2:&lt;method&gt;:&lt;project_url&gt;
 </code></pre></div>
-<p>Найти пользователя:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;user&quot;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lab2.parser@example.com&#39;</span><span class="p">;</span>
+<p>Если запись с этим <code>Source ID</code> уже есть в <code>description</code>, выполняется обновление, а не повторная вставка.</p>
+<h2 id="_9">Как подготовить БД<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>students/K3341/Alekseev_Andrey/lr_1
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>up<span class="w"> </span>-d
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
 </code></pre></div>
-<p>Посмотреть сохраненные теги:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">user_id</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">tag</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">user_id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;user&quot;</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">WHERE</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lab2.parser@example.com&#39;</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">)</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">id</span><span class="p">;</span>
+<p>После этого можно запускать парсеры из <code>lr_2</code>.</p>
+<h2 id="_10">Как проверить данные<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>Подключение к контейнеру:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>finance_postgres<span class="w"> </span>psql<span class="w"> </span>-U<span class="w"> </span>finance_user<span class="w"> </span>-d<span class="w"> </span>finance_db
 </code></pre></div>
-<h2 id="_6">Команды запуска с БД<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p>Подготовка:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>students/K3341/Alekseev_Andrey/lr_1
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>docker<span class="w"> </span>compose<span class="w"> </span>up<span class="w"> </span>-d
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+<p>Технический пользователь:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">FROM</span><span class="w"> </span><span class="ss">&quot;user&quot;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;parser_bot@example.local&#39;</span><span class="p">;</span>
 </code></pre></div>
-<p>Запуск парсинга:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">cd</span><span class="w"> </span>../lr_2
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.threading_parse
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.multiprocessing_parse
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.async_parse
+<p>Количество записей Lab 2:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">FROM</span><span class="w"> </span><span class="k">transaction</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%LR2 parser source:%&#39;</span><span class="p">;</span>
 </code></pre></div>
-<h2 id="_7">Связь с первой лабораторной<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p>Использование таблицы <code>tag</code> показывает, что вторая лабораторная не живет отдельно, а расширяет уже созданную инфраструктуру <code>lr_1</code>: PostgreSQL, схема данных, миграции и API пользователя.</p>
+<p>Количество записей по способам парсинга:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="k">substring</span><span class="p">(</span><span class="n">description</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="s1">&#39;Parser: ([^\n]+)&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">parser</span><span class="p">,</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">       </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">FROM</span><span class="w"> </span><span class="k">transaction</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%LR2 parser source:%&#39;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+</code></pre></div>
+<p>Последний проверенный результат после полного прогона:</p>
+<ul>
+<li><code>threading</code>: 30</li>
+<li><code>multiprocessing</code>: 30</li>
+<li><code>asyncio</code>: 30</li>
+<li>всего: 90</li>
+</ul>
 
 
 

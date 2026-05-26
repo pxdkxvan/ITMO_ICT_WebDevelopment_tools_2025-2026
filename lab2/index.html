@@ -646,7 +646,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Структура проекта
+        Что парсится
       
     </span>
   </a>
@@ -657,7 +657,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Требования задания
+        Кратко о сохранении в БД
       
     </span>
   </a>
@@ -669,6 +669,17 @@
     <span class="md-ellipsis">
       
         Быстрый запуск
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Последний проверенный результат
       
     </span>
   </a>
@@ -816,7 +827,7 @@
   <a href="#_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Структура проекта
+        Что парсится
       
     </span>
   </a>
@@ -827,7 +838,7 @@
   <a href="#_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Требования задания
+        Кратко о сохранении в БД
       
     </span>
   </a>
@@ -839,6 +850,17 @@
     <span class="md-ellipsis">
       
         Быстрый запуск
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Последний проверенный результат
       
     </span>
   </a>
@@ -871,56 +893,64 @@
 
 
 <h1 id="2">Лабораторная работа 2<a class="headerlink" href="#2" title="Permanent link">&para;</a></h1>
-<p>Лабораторная работа посвящена сравнению <code>threading</code>, <code>multiprocessing</code> и <code>asyncio</code> на двух типах задач:</p>
+<p>Лабораторная работа сравнивает <code>threading</code>, <code>multiprocessing</code> и <code>asyncio</code> на двух сценариях:</p>
 <ol>
-<li>вычисление суммы чисел от <code>1</code> до <code>10000000000000</code>;</li>
-<li>параллельный парсинг веб-страниц с сохранением результатов в базу данных из <code>lr_1</code>.</li>
+<li>вычисление суммы чисел от <code>1</code> до <code>10_000_000_000_000</code>;</li>
+<li>параллельный парсинг HTML-страниц с сохранением результатов в PostgreSQL из <code>lr_1</code>.</li>
 </ol>
-<p>Исходный код лабораторной находится в <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_2">students/K3341/Alekseev_Andrey/lr_2</a>.</p>
+<p>Исходный код находится в <a href="https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_2">students/K3341/Alekseev_Andrey/lr_2</a>.</p>
 <p><a class="md-button md-button--primary" href="implementation/">Открыть реализацию</a>
 <a class="md-button md-button--primary" href="benchmarks/">Открыть замеры</a>
 <a class="md-button" href="database_usage/">Работа с БД</a></p>
 <h2 id="_1">Что реализовано<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>threading_sum.py</code>, <code>multiprocessing_sum.py</code>, <code>async_sum.py</code></li>
-<li><code>threading_parse.py</code>, <code>multiprocessing_parse.py</code>, <code>async_parse.py</code></li>
-<li>общий модуль запуска замеров <code>benchmark.py</code></li>
-<li>документация с анализом результатов и использованием БД из первой лабораторной</li>
+<li>три реализации Task 1: <code>threading_sum.py</code>, <code>multiprocessing_sum.py</code>, <code>asyncio_sum.py</code>;</li>
+<li>три реализации Task 2: <code>threading_parse.py</code>, <code>multiprocessing_parse.py</code>, <code>asyncio_parse.py</code>;</li>
+<li>отдельные агрегаторы <code>task1_benchmark.py</code>, <code>task2_benchmark.py</code>;</li>
+<li>общий запуск <code>benchmark.py</code>;</li>
+<li>совместимость и с <code>python -m ...</code>, и с прямым запуском <code>python lab2/...py</code>.</li>
 </ul>
-<h2 id="_2">Структура проекта<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>lr_2/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── README.md
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── requirements.txt
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>├── docs/
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   └── report.md
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>└── lab2/
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    ├── benchmark.py
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    ├── config.py
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    ├── db.py
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    ├── parsing.py
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    ├── sum_utils.py
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    ├── threading_sum.py
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>    ├── multiprocessing_sum.py
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    ├── async_sum.py
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    ├── threading_parse.py
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    ├── multiprocessing_parse.py
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    └── async_parse.py
-</code></pre></div>
-<h2 id="_3">Требования задания<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="_2">Что парсится<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Для стабильного публичного HTML-источника используется <code>books.toscrape.com</code>:</p>
 <ul>
-<li>у каждой программы для вычислений есть функция <code>calculate_sum()</code></li>
-<li>у каждой программы для парсинга есть функция <code>parse_and_save(...)</code></li>
-<li>все реализации разбивают работу на несколько независимых подзадач</li>
-<li>для парсинга используется база данных из <code>lr_1</code></li>
-<li>выполнены замеры времени и добавлен комментарий по результатам</li>
+<li><code>https://books.toscrape.com/catalogue/page-1.html</code></li>
+<li><code>...</code></li>
+<li><code>https://books.toscrape.com/catalogue/page-6.html</code></li>
 </ul>
+<p>С каждой страницы берутся первые 5 карточек книг. Для каждой карточки сохраняются:</p>
+<ul>
+<li>заголовок;</li>
+<li>URL книги;</li>
+<li>цена;</li>
+<li>наличие;</li>
+<li>служебные метаданные о способе парсинга.</li>
+</ul>
+<h2 id="_3">Кратко о сохранении в БД<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Парсинг использует базу из <code>lr_1</code>, но не создает отдельную схему. Данные сохраняются в уже существующие таблицы:</p>
+<ul>
+<li>технический пользователь в <code>user</code>;</li>
+<li>категории страниц в <code>category</code>;</li>
+<li>признак способа парсинга в <code>tag</code>;</li>
+<li>карточки как записи в <code>transaction</code>;</li>
+<li>связь записи и тега в <code>transactiontaglink</code>.</li>
+</ul>
+<p>Такой вариант был выбран потому, что в <code>lr_1</code> уже есть готовая PostgreSQL-схема и миграции.</p>
 <h2 id="_4">Быстрый запуск<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">cd</span><span class="w"> </span>students/K3341/Alekseev_Andrey/lr_2
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.benchmark<span class="w"> </span>--workers<span class="w"> </span><span class="m">4</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nb">cd</span><span class="w"> </span>students/K3341/Alekseev_Andrey/lr_1
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>docker<span class="w"> </span>compose<span class="w"> </span>--env-file<span class="w"> </span>.env<span class="w"> </span>up<span class="w"> </span>-d
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">DATABASE_URL</span><span class="o">=</span>postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db<span class="w"> </span>python<span class="w"> </span>-m<span class="w"> </span>alembic<span class="w"> </span>upgrade<span class="w"> </span>head
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nb">cd</span><span class="w"> </span>../lr_2
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>python<span class="w"> </span>-m<span class="w"> </span>lab2.benchmark
 </code></pre></div>
-<p>Для сценария с БД предварительно нужно поднять PostgreSQL и миграции из <code>lr_1</code>.</p>
+<h2 id="_5">Последний проверенный результат<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>При последнем полном прогоне:</p>
+<ul>
+<li>Task 1 завершился без ошибок во всех трех реализациях;</li>
+<li>Task 2 завершился без ошибок во всех трех реализациях;</li>
+<li>в БД было записано <code>90</code> строк <code>transaction</code> с пометкой <code>LR2 parser source:</code>.</li>
+</ul>
 
 
 

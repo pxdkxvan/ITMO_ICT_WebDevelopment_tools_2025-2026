@@ -4,34 +4,56 @@ import argparse
 import threading
 import time
 
-from lab2.db import ensure_parser_user
-from lab2.parsing import DEFAULT_URLS, chunked, parse_and_save_sync
+import requests
+
+try:
+    from .common_parse import DEFAULT_URLS, HTTP_HEADERS, REQUEST_TIMEOUT_SECONDS, ParseResult, chunk_urls
+    from .common_parse import page_title, parse_project_items, print_parse_result, save_projects, summarize_results
+except ImportError:
+    from common_parse import DEFAULT_URLS, HTTP_HEADERS, REQUEST_TIMEOUT_SECONDS, ParseResult, chunk_urls
+    from common_parse import page_title, parse_project_items, print_parse_result, save_projects, summarize_results
+
+METHOD = "threading"
 
 
-def parse_and_save(url: str, user_id: int) -> dict[str, str | int]:
-    return parse_and_save_sync(url, user_id)
+def parse_and_save(url: str) -> ParseResult:
+    try:
+        response = requests.get(url, headers=HTTP_HEADERS, timeout=REQUEST_TIMEOUT_SECONDS)
+        response.raise_for_status()
+        title = page_title(response.text)
+        projects = parse_project_items(url, response.text)
+        saved_count = save_projects(projects, METHOD)
+        result = ParseResult(
+            url=url,
+            title=title,
+            parsed_by=METHOD,
+            status="ok",
+            extracted_count=len(projects),
+            saved_count=saved_count,
+        )
+    except Exception as exc:
+        print(f"[{METHOD}] Parse/save error for {url}: {exc}", flush=True)
+        result = ParseResult(url=url, title=None, parsed_by=METHOD, status="error", error=str(exc))
+    print_parse_result(result)
+    return result
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser(description="Threading page parser")
-    parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--urls", nargs="*", default=DEFAULT_URLS)
-    args = parser.parse_args()
+def _worker(urls: list[str], results: list[ParseResult], lock: threading.Lock) -> None:
+    chunk_results = [parse_and_save(url) for url in urls]
+    with lock:
+        results.extend(chunk_results)
 
-    user_id = ensure_parser_user()
-    chunks = chunked(args.urls, args.workers)
-    results: list[dict[str, str | int]] = []
-    lock = threading.Lock()
+
+def run_benchmark(urls: list[str] | None = None, workers: int = 4) -> dict[str, object]:
+    target_urls = urls or DEFAULT_URLS
+    url_chunks = chunk_urls(target_urls, workers)
     threads: list[threading.Thread] = []
-
-    def worker(urls: list[str]) -> None:
-        local_results = [parse_and_save(url, user_id) for url in urls]
-        with lock:
-            results.extend(local_results)
+    results: list[ParseResult] = []
+    lock = threading.Lock()
 
     started_at = time.perf_counter()
-    for urls in chunks:
-        thread = threading.Thread(target=worker, args=(urls,))
+    for url_chunk in url_chunks:
+        thread = threading.Thread(target=_worker, args=(url_chunk, results, lock))
         threads.append(thread)
         thread.start()
 
@@ -39,11 +61,17 @@ def main() -> None:
         thread.join()
 
     elapsed = time.perf_counter() - started_at
+    return summarize_results(METHOD, started_at, elapsed, results)
 
-    for result in results:
-        print(f"{result['url']} -> {result['title']} (tag_id={result['tag_id']})")
-    print(f"saved={len(results)}")
-    print(f"elapsed={elapsed:.6f}s")
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Parse web pages in parallel using threading.")
+    parser.add_argument("--workers", type=int, default=4, help="Number of worker threads.")
+    parser.add_argument("--url", action="append", dest="urls", help="URL to parse. Can be passed multiple times.")
+    args = parser.parse_args()
+
+    result = run_benchmark(urls=args.urls, workers=args.workers)
+    print(f"{METHOD}: saved={result['saved']} errors={result['errors']} elapsed={result['elapsed_seconds']:.6f}s", flush=True)
 
 
 if __name__ == "__main__":

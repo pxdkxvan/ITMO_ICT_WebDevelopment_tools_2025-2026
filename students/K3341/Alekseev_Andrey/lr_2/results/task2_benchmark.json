@@ -1,0 +1,200 @@
+[
+  {
+    "method": "threading",
+    "started_at": 15041.473715962,
+    "urls": 6,
+    "saved": 30,
+    "extracted": 30,
+    "ok": 6,
+    "errors": 0,
+    "elapsed_seconds": 2.801359725999646,
+    "items": [
+      {
+        "url": "https://books.toscrape.com/catalogue/page-4.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "threading",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-3.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "threading",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-1.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "threading",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-5.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "threading",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-2.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "threading",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-6.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "threading",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      }
+    ]
+  },
+  {
+    "method": "multiprocessing",
+    "started_at": 15044.275436143,
+    "urls": 6,
+    "saved": 30,
+    "extracted": 30,
+    "ok": 6,
+    "errors": 0,
+    "elapsed_seconds": 3.038129671000206,
+    "items": [
+      {
+        "url": "https://books.toscrape.com/catalogue/page-4.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "multiprocessing",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-3.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "multiprocessing",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-1.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "multiprocessing",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-5.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "multiprocessing",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-2.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "multiprocessing",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-6.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "multiprocessing",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      }
+    ]
+  },
+  {
+    "method": "asyncio",
+    "started_at": 15047.314093871,
+    "urls": 6,
+    "saved": 30,
+    "extracted": 30,
+    "ok": 6,
+    "errors": 0,
+    "elapsed_seconds": 1.8930167899998196,
+    "items": [
+      {
+        "url": "https://books.toscrape.com/catalogue/page-1.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "asyncio",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-5.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "asyncio",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-2.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "asyncio",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-6.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "asyncio",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-3.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "asyncio",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      },
+      {
+        "url": "https://books.toscrape.com/catalogue/page-4.html",
+        "title": "All products | Books to Scrape - Sandbox",
+        "parsed_by": "asyncio",
+        "status": "ok",
+        "extracted_count": 5,
+        "saved_count": 5,
+        "error": null
+      }
+    ]
+  }
+]

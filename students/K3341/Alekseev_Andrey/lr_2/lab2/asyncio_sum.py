@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import argparse
-import threading
+import asyncio
 import time
 
 try:
@@ -12,33 +12,22 @@ except ImportError:
     from common_sum import print_result, verify_total
 
 
-def calculate_sum(start: int, end: int) -> int:
+async def calculate_sum(start: int, end: int) -> int:
+    await asyncio.sleep(0)
     return arithmetic_progression_sum(start, end)
 
 
-def _worker(index: int, start: int, end: int, results: list[int]) -> None:
-    results[index] = calculate_sum(start, end)
-
-
-def run_benchmark(workers: int = DEFAULT_WORKERS, n: int = TARGET_N) -> dict[str, object]:
+async def run_benchmark_async(workers: int = DEFAULT_WORKERS, n: int = TARGET_N) -> dict[str, object]:
     chunks = make_chunks(1, n, workers)
-    results = [0] * len(chunks)
-    threads: list[threading.Thread] = []
 
     started_at = time.perf_counter()
-    for index, (start, end) in enumerate(chunks):
-        thread = threading.Thread(target=_worker, args=(index, start, end, results))
-        threads.append(thread)
-        thread.start()
-
-    for thread in threads:
-        thread.join()
-
-    total = sum(results)
+    tasks = [calculate_sum(start, end) for start, end in chunks]
+    results = await asyncio.gather(*tasks)
     elapsed = time.perf_counter() - started_at
 
+    total = sum(results)
     return {
-        "method": "threading",
+        "method": "asyncio",
         "chunks": len(chunks),
         "result": total,
         "verified": verify_total(total, n),
@@ -46,9 +35,13 @@ def run_benchmark(workers: int = DEFAULT_WORKERS, n: int = TARGET_N) -> dict[str
     }
 
 
+def run_benchmark(workers: int = DEFAULT_WORKERS, n: int = TARGET_N) -> dict[str, object]:
+    return asyncio.run(run_benchmark_async(workers=workers, n=n))
+
+
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Sum 1..N using Python threading.")
-    parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS, help="Number of chunks/threads.")
+    parser = argparse.ArgumentParser(description="Sum 1..N using asyncio orchestration.")
+    parser.add_argument("--workers", type=int, default=DEFAULT_WORKERS, help="Number of chunks/async tasks.")
     parser.add_argument("--n", type=int, default=TARGET_N, help="Inclusive upper bound.")
     args = parser.parse_args()
 

@@ -1,55 +1,153 @@
 from __future__ import annotations
 
-import argparse
-import re
-import subprocess
-import sys
+import json
+import multiprocessing
+from pathlib import Path
+
+from sqlalchemy import text
+
+try:
+    from . import asyncio_parse, multiprocessing_parse, multiprocessing_sum, threading_parse, threading_sum
+    from .asyncio_sum import run_benchmark as run_asyncio_sum_benchmark
+    from .common_parse import DEFAULT_URLS, create_db_engine, print_benchmark_table, write_task2_results
+    from .common_sum import DEFAULT_WORKERS as SUM_WORKERS
+    from .common_sum import TARGET_N, format_number, write_benchmark_results
+except ImportError:
+    import asyncio_parse
+    import multiprocessing_parse
+    import multiprocessing_sum
+    import threading_parse
+    import threading_sum
+    from asyncio_sum import run_benchmark as run_asyncio_sum_benchmark
+    from common_parse import DEFAULT_URLS, create_db_engine, print_benchmark_table, write_task2_results
+    from common_sum import DEFAULT_WORKERS as SUM_WORKERS
+    from common_sum import TARGET_N, format_number, write_benchmark_results
+
+RESULTS_DIR = Path("results")
 
 
-def extract_elapsed(output: str) -> float:
-    match = re.search(r"elapsed=([0-9.]+)s", output)
-    if not match:
-        raise RuntimeError(f"Cannot find elapsed time in output:\n{output}")
-    return float(match.group(1))
+def get_lr2_transactions_count() -> int | None:
+    engine = None
+    try:
+        engine = create_db_engine()
+        with engine.connect() as connection:
+            return int(
+                connection.scalar(
+                    text("select count(*) from transaction where description like '%LR2 parser source:%'")
+                )
+                or 0
+            )
+    except Exception as exc:
+        print(f"Could not read LR2 transactions count: {exc}", flush=True)
+        return None
+    finally:
+        if engine is not None:
+            engine.dispose()
 
 
-def run_module(module_name: str, *args: str) -> tuple[float, str]:
-    command = [sys.executable, "-m", module_name, *args]
-    completed = subprocess.run(command, check=True, capture_output=True, text=True)
-    return extract_elapsed(completed.stdout), completed.stdout
+def write_summary(task1_results: list[dict[str, object]], task2_results: list[dict[str, object]]) -> None:
+    RESULTS_DIR.mkdir(parents=True, exist_ok=True)
+    db_count = get_lr2_transactions_count()
+
+    summary = {
+        "task1": task1_results,
+        "task2": task2_results,
+        "lr2_transactions_count": db_count,
+    }
+
+    (RESULTS_DIR / "lr2_benchmark_summary.json").write_text(
+        json.dumps(summary, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
+    lines = [
+        "# LR2 Benchmark Summary",
+        "",
+        "## Task 1",
+        "",
+        f"Target range: `1..{format_number(TARGET_N)}`",
+        "",
+        "| Approach | Chunks | Verified | Time, seconds |",
+        "| --- | ---: | :---: | ---: |",
+    ]
+    for row in task1_results:
+        lines.append(
+            "| {method} | {chunks} | {verified} | {elapsed:.6f} |".format(
+                method=row["method"],
+                chunks=row["chunks"],
+                verified="yes" if row["verified"] else "no",
+                elapsed=row["elapsed_seconds"],
+            )
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Task 2",
+            "",
+            f"URLs parsed: `{len(DEFAULT_URLS)}`",
+            "",
+            "| Approach | URLs | Saved tasks | Errors | Time, seconds |",
+            "| --- | ---: | ---: | ---: | ---: |",
+        ]
+    )
+    for row in task2_results:
+        lines.append(
+            "| {method} | {urls} | {saved} | {errors} | {elapsed:.6f} |".format(
+                method=row["method"],
+                urls=row["urls"],
+                saved=row["saved"],
+                errors=row["errors"],
+                elapsed=row["elapsed_seconds"],
+            )
+        )
+
+    lines.extend(
+        [
+            "",
+            "## Database",
+            "",
+            f"`transaction` rows created/updated by LR2 parsers: `{db_count if db_count is not None else 'unknown'}`",
+        ]
+    )
+
+    (RESULTS_DIR / "lr2_benchmark_summary.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Benchmark all lab2 scripts")
-    parser.add_argument("--sum-limit", type=int, default=10_000_000_000_000)
-    parser.add_argument("--workers", type=int, default=4)
-    parser.add_argument("--skip-parse", action="store_true")
-    args = parser.parse_args()
+    print("Running LR2 benchmarks", flush=True)
+    print(f"Task 1 target: 1..{format_number(TARGET_N)}", flush=True)
+    print(f"Task 1 chunks: {SUM_WORKERS}", flush=True)
+    print(f"Task 2 URLs: {len(DEFAULT_URLS)}", flush=True)
+    print()
 
-    sum_modules = [
-        "lab2.threading_sum",
-        "lab2.multiprocessing_sum",
-        "lab2.async_sum",
+    task1_results = [
+        threading_sum.run_benchmark(workers=SUM_WORKERS, n=TARGET_N),
+        multiprocessing_sum.run_benchmark(workers=SUM_WORKERS, n=TARGET_N),
+        run_asyncio_sum_benchmark(workers=SUM_WORKERS, n=TARGET_N),
     ]
-    parse_modules = [
-        "lab2.threading_parse",
-        "lab2.multiprocessing_parse",
-        "lab2.async_parse",
+    write_benchmark_results(task1_results, RESULTS_DIR)
+
+    print("Task 1 finished", flush=True)
+    print()
+
+    task2_results = [
+        threading_parse.run_benchmark(urls=DEFAULT_URLS, workers=4),
+        multiprocessing_parse.run_benchmark(urls=DEFAULT_URLS, workers=4),
+        asyncio_parse.run_benchmark(urls=DEFAULT_URLS, workers=4),
     ]
+    write_task2_results(task2_results, RESULTS_DIR)
 
-    print("Sum benchmarks")
-    for module_name in sum_modules:
-        elapsed, _ = run_module(module_name, "--limit", str(args.sum_limit), "--workers", str(args.workers))
-        print(f"{module_name}: {elapsed:.6f}s")
+    print()
+    print("Task 2 finished", flush=True)
+    print_benchmark_table(task2_results)
 
-    if args.skip_parse:
-        return
-
-    print("\nParse benchmarks")
-    for module_name in parse_modules:
-        elapsed, _ = run_module(module_name, "--workers", str(args.workers))
-        print(f"{module_name}: {elapsed:.6f}s")
+    write_summary(task1_results, task2_results)
+    print()
+    print(f"Saved summary Markdown: {RESULTS_DIR / 'lr2_benchmark_summary.md'}", flush=True)
+    print(f"Saved summary JSON: {RESULTS_DIR / 'lr2_benchmark_summary.json'}", flush=True)
 
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     main()

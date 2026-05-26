@@ -1,0 +1,23 @@
+[
+  {
+    "method": "threading",
+    "chunks": 4,
+    "result": 5050,
+    "verified": true,
+    "elapsed_seconds": 0.0004936340010317508
+  },
+  {
+    "method": "multiprocessing",
+    "chunks": 4,
+    "result": 5050,
+    "verified": true,
+    "elapsed_seconds": 0.0038600729985773796
+  },
+  {
+    "method": "asyncio",
+    "chunks": 4,
+    "result": 5050,
+    "verified": true,
+    "elapsed_seconds": 8.668900045449845e-05
+  }
+]

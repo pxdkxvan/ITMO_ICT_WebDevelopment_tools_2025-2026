@@ -1,9 +1,10 @@
 # Лабораторные работы
 
-На GitHub Pages опубликованы материалы по двум лабораторным работам курса `Web Development Tools`.
+На GitHub Pages опубликованы материалы по трем лабораторным работам курса `Web Development Tools`.
 
 [Lab 1](final_report.md){ .md-button .md-button--primary }
 [Lab 2](lab2/index.md){ .md-button .md-button--primary }
+[Lab 3](lab3/index.md){ .md-button .md-button--primary }
 [Репозиторий](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey){ .md-button }
 
 ## Разделы
@@ -28,6 +29,12 @@
 
     [Перейти](03_http_api.md)
 
+-   **Lab 3**
+
+    Docker, parser-service, Redis, Celery и вызов парсера из FastAPI синхронно и через очередь.
+
+    [Перейти](lab3/index.md)
+
 -   **Замеры Lab 2**
 
     Таблицы времени выполнения и разбор того, почему подходы показывают разный результат.
@@ -43,7 +50,8 @@
 | GitHub Pages | [опубликовано](https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/) |
 | Lab 1 | [students/K3341/Alekseev_Andrey/lr_1](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_1) |
 | Lab 2 | [students/K3341/Alekseev_Andrey/lr_2](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_2) |
-| Основной стек | Python, FastAPI, PostgreSQL, asyncio, threading, multiprocessing |
+| Lab 3 | [students/K3341/Alekseev_Andrey/lr_3](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_3) |
+| Основной стек | Python, FastAPI, PostgreSQL, Docker, Redis, Celery, asyncio, threading, multiprocessing |
 
 ## Запуск документации локально
 

@@ -2,81 +2,117 @@
 
 ## Какая БД используется
 
-Для задачи 2 используется PostgreSQL из лабораторной работы 1:
+Lab 2 использует PostgreSQL из `lr_1`:
 
 - БД: `finance_db`
 - пользователь: `finance_user`
-- подключение: `postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db`
+- URL: `postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db`
 
-## Куда сохраняются данные парсинга
+## Какие таблицы задействованы
 
-Заголовки веб-страниц сохраняются в таблицу `tag` из первой лабораторной.
+Парсер не создает отдельные таблицы, а использует схему первой лабораторной:
 
-Причины выбора:
+- `user`
+- `category`
+- `tag`
+- `transaction`
+- `transactiontaglink`
 
-- у таблицы есть естественное поле `name` для хранения заголовка
-- не нужно придумывать фиктивные денежные значения, как для `transaction`, `budget` или `goal`
-- ограничение уникальности `(user_id, name)` защищает от дублей при повторных запусках
+## Как данные отображаются на схему `lr_1`
 
-## Какой пользователь используется
+### Технический пользователь
 
-Парсинг выполняется от имени технического пользователя:
+Создается пользователь:
 
-- `email`: `lab2.parser@example.com`
-- `full_name`: `Lab 2 Parser`
+- `email = parser_bot@example.local`
+- `full_name = LR2 Parser Bot`
 
-Пользователь создается через API регистрации `lr_1`, поэтому пароль хранится в виде PBKDF2-хеша, а не в открытом виде.
+Этот пользователь нужен, чтобы все записи Lab 2 были изолированы от пользовательских данных `lr_1`.
 
-## Как проверить записи
+### Категории
 
-Подключиться к PostgreSQL:
+Для каждого источника создается `category` с `kind='expense'`, например:
+
+- `Books to Scrape Page 1`
+- `Books to Scrape Page 2`
+
+### Теги
+
+Для каждого способа парсинга используется свой тег:
+
+- `parsed:threading`
+- `parsed:multiprocessing`
+- `parsed:asyncio`
+
+### Основные записи
+
+Каждая распарсенная карточка сохраняется в `transaction`:
+
+- `amount` берется из цены книги;
+- `description` содержит `Source ID`, URL, способ парсинга и текстовое описание;
+- `transaction_date` ставится текущей датой;
+- `kind='expense'`.
+
+Связь записи и способа парсинга хранится в `transactiontaglink`.
+
+## Защита от дублей
+
+Для одной и той же карточки строится `Source ID`:
+
+```text
+lr2:<method>:<project_url>
+```
+
+Если запись с этим `Source ID` уже есть в `description`, выполняется обновление, а не повторная вставка.
+
+## Как подготовить БД
+
+```bash
+cd students/K3341/Alekseev_Andrey/lr_1
+docker compose --env-file .env up -d
+DATABASE_URL=postgresql+psycopg2://finance_user:finance_pass@localhost:5432/finance_db python -m alembic upgrade head
+```
+
+После этого можно запускать парсеры из `lr_2`.
+
+## Как проверить данные
+
+Подключение к контейнеру:
 
 ```bash
 docker exec -it finance_postgres psql -U finance_user -d finance_db
 ```
 
-Найти пользователя:
+Технический пользователь:
 
 ```sql
 SELECT id, email, full_name
 FROM "user"
-WHERE email = 'lab2.parser@example.com';
+WHERE email = 'parser_bot@example.local';
 ```
 
-Посмотреть сохраненные теги:
+Количество записей Lab 2:
 
 ```sql
-SELECT id, name, user_id
-FROM tag
-WHERE user_id = (
-    SELECT id
-    FROM "user"
-    WHERE email = 'lab2.parser@example.com'
-)
-ORDER BY id;
+SELECT count(*)
+FROM transaction
+WHERE description LIKE '%LR2 parser source:%';
 ```
 
-## Команды запуска с БД
+Количество записей по способам парсинга:
 
-Подготовка:
-
-```bash
-cd students/K3341/Alekseev_Andrey/lr_1
-cp .env.example .env
-docker compose up -d
-alembic upgrade head
+```sql
+SELECT substring(description from 'Parser: ([^\n]+)') AS parser,
+       count(*)
+FROM transaction
+WHERE description LIKE '%LR2 parser source:%'
+GROUP BY 1
+ORDER BY 1;
 ```
 
-Запуск парсинга:
+Последний проверенный результат после полного прогона:
 
-```bash
-cd ../lr_2
-cp .env.example .env
-python -m lab2.threading_parse
-python -m lab2.multiprocessing_parse
-python -m lab2.async_parse
-```
-
-## Связь с первой лабораторной
-
-Использование таблицы `tag` показывает, что вторая лабораторная не живет отдельно, а расширяет уже созданную инфраструктуру `lr_1`: PostgreSQL, схема данных, миграции и API пользователя.
+- `threading`: 30
+- `multiprocessing`: 30
+- `asyncio`: 30
+- всего: 90

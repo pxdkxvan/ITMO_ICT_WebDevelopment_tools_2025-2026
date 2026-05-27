@@ -1,87 +1,136 @@
 # Реализация Lab 2
 
-## Задача 1. Сумма чисел
+## Структура
+
+Основные файлы лабораторной:
+
+- `lab2/common_sum.py`
+- `lab2/common_parse.py`
+- `lab2/threading_sum.py`
+- `lab2/multiprocessing_sum.py`
+- `lab2/asyncio_sum.py`
+- `lab2/threading_parse.py`
+- `lab2/multiprocessing_parse.py`
+- `lab2/asyncio_parse.py`
+- `lab2/task1_benchmark.py`
+- `lab2/task2_benchmark.py`
+- `lab2/benchmark.py`
+
+## Задача 1. Вычисление суммы
+
+Все три реализации используют одинаковую идею:
+
+1. диапазон `1..N` делится на части функцией `make_chunks(...)`;
+2. каждая часть считается независимо;
+3. итоговая сумма получается как сумма частичных результатов.
+
+### Почему не используется прямой цикл до `10^13`
+
+Полный перебор до `10_000_000_000_000` не имеет смысла для учебного сравнения: он слишком длинный и скрывает различия между моделями параллелизма. Поэтому каждая подзадача считает сумму своего диапазона по формуле арифметической прогрессии:
+
+```text
+S = (a1 + an) * n / 2
+```
 
 ### `threading_sum.py`
 
-- диапазон `1..limit` разбивается функцией `split_range()`
-- для каждого поддиапазона создается поток `threading.Thread`
-- каждый поток вызывает `calculate_sum(start, end)`
-- итоговая сумма получается как сумма частичных результатов
+- создает по одному `threading.Thread` на каждый chunk;
+- каждый поток вызывает `calculate_sum(start, end)`;
+- частичные суммы складываются в общем списке по индексам.
 
 ### `multiprocessing_sum.py`
 
-- используется `multiprocessing.Pool`
-- каждая пара `(start, end)` уходит в отдельную задачу процесса
-- частичные суммы возвращаются в главный процесс через `starmap`
+- создает отдельные процессы `multiprocessing.Process`;
+- результаты возвращаются через `multiprocessing.Queue`;
+- после `join()` все части суммируются в главном процессе.
 
-### `async_sum.py`
+### `asyncio_sum.py`
 
-- для каждого поддиапазона создается coroutine `calculate_sum(start, end)`
-- запуск выполняется через `asyncio.gather`
-- этот вариант демонстрирует кооперативную модель выполнения, но не дает реального CPU-параллелизма
-
-### Общая функция вычисления
-
-Вместо полного цикла до `10^13` используется формула суммы арифметической прогрессии на каждом поддиапазоне:
-
-```text
-S = n * (a1 + an) / 2
-```
-
-Такое решение выбрано сознательно. Прямой перебор чисел до `10000000000000` занял бы слишком много времени и сделал бы лабораторную непрактичной для локального запуска.
+- для каждого диапазона создается coroutine `calculate_sum(start, end)`;
+- запуск идет через `asyncio.gather(...)`;
+- это оркестрация задач, а не реальный CPU-параллелизм.
 
 ## Задача 2. Параллельный парсинг
 
-### Общий поток обработки
+Общий сценарий одинаков для всех режимов:
 
-1. берется список URL из `DEFAULT_URLS` в `lab2/parsing.py`
-2. HTML страницы загружается синхронно или асинхронно в зависимости от режима
-3. из тега `<title>` извлекается заголовок страницы
-4. заголовок сохраняется в БД как запись в таблице `tag`
-5. результат печатается в консоль
+1. берется список URL из `DEFAULT_URLS` в `common_parse.py`;
+2. загружается HTML;
+3. из HTML извлекаются карточки книг;
+4. карточки сохраняются в PostgreSQL;
+5. печатается итог `extracted/saved/errors`.
+
+### Что именно парсится
+
+Источник: `books.toscrape.com`.
+
+С каждой страницы берутся первые 5 карточек `article.product_pod`. Для каждой карточки извлекаются:
+
+- `title`;
+- относительный/абсолютный URL книги;
+- цена;
+- наличие;
+- рейтинг как дополнительный `meta`.
 
 ### `threading_parse.py`
 
-- URL-адреса делятся на равные части функцией `chunked()`
-- каждая часть обрабатывается своим потоком
-- поток последовательно парсит свою группу адресов и складывает результаты в общий список
+- делит URL на чанки функцией `chunk_urls(...)`;
+- запускает поток на каждый chunk;
+- внутри потока адреса обрабатываются последовательно.
 
 ### `multiprocessing_parse.py`
 
-- используется пул процессов `multiprocessing.Pool`
-- каждый URL отправляется отдельной задаче процесса
-- вариант показывает, что `multiprocessing` можно использовать и для I/O, хотя это не самый естественный инструмент для сетевых запросов
+- запускает процесс на каждый chunk;
+- каждый процесс возвращает список результатов через `multiprocessing.Queue`;
+- после завершения процессов результаты объединяются и суммируются.
 
-### `async_parse.py`
+### `asyncio_parse.py`
 
-- используется `aiohttp.ClientSession`
-- все HTTP-запросы запускаются конкурентно через `asyncio.gather`
-- сохранение в БД выполняется через `asyncio.to_thread(...)`, потому что доступ к PostgreSQL реализован синхронным драйвером `psycopg2`
+- использует `aiohttp.ClientSession`;
+- запускает конкурентные HTTP-запросы через `asyncio.gather(...)`;
+- синхронное сохранение в БД отправляется в `asyncio.to_thread(...)`.
 
-## Использованные модули
+## Общие модули
 
-- `threading`
-- `multiprocessing`
-- `asyncio`
-- `aiohttp`
-- `psycopg2-binary`
-- `beautifulsoup4`
+### `common_sum.py`
 
-## Команды запуска
+Содержит:
+
+- `TARGET_N`;
+- `DEFAULT_WORKERS`;
+- `arithmetic_progression_sum(...)`;
+- `make_chunks(...)`;
+- `print_result(...)`;
+- `write_benchmark_results(...)`.
+
+### `common_parse.py`
+
+Содержит:
+
+- `DEFAULT_URLS`;
+- `ProjectItem`, `ParseResult`;
+- HTML-парсинг карточек;
+- подключение к PostgreSQL;
+- функции `ensure_parser_user`, `ensure_category`, `ensure_tag`;
+- upsert логики для `transaction` и `transactiontaglink`;
+- генерацию markdown/json результатов.
+
+## Совместимость запуска
+
+Entry-point файлы поддерживают оба сценария:
 
 ```bash
-python -m lab2.threading_sum
-python -m lab2.multiprocessing_sum
-python -m lab2.async_sum
-
-python -m lab2.threading_parse
-python -m lab2.multiprocessing_parse
-python -m lab2.async_parse
+python -m lab2.task1_benchmark
+python -m lab2.task2_benchmark
+python -m lab2.benchmark
 ```
 
-## Файлы реализации
+и
 
-- [README лабораторной 2](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/blob/main/students/K3341/Alekseev_Andrey/lr_2/README.md)
-- [docs/report.md](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/blob/main/students/K3341/Alekseev_Andrey/lr_2/docs/report.md)
-- [пакет lab2](https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026/tree/main/students/K3341/Alekseev_Andrey/lr_2/lab2)
+```bash
+python lab2/task1_benchmark.py
+python lab2/task2_benchmark.py
+python lab2/benchmark.py
+```
+
+Это сделано через fallback-импорты для прямого запуска файлов без package context.

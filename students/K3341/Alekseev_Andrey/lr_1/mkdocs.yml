@@ -1,5 +1,5 @@
 site_name: ITMO Web Development Labs
-site_description: Technical documentation for laboratory works 1 and 2
+site_description: Technical documentation for laboratory works 1, 2 and 3
 site_author: Alekseev Andrey
 site_url: https://pxdkxvan.github.io/ITMO_ICT_WebDevelopment_tools_2025-2026/
 repo_url: https://github.com/pxdkxvan/ITMO_ICT_WebDevelopment_tools_2025-2026
@@ -77,3 +77,8 @@ nav:
       - Реализация: lab2/implementation.md
       - Замеры и анализ: lab2/benchmarks.md
       - Работа с БД: lab2/database_usage.md
+  - Lab 3:
+      - Обзор: lab3/index.md
+      - Архитектура и Docker: lab3/architecture.md
+      - HTTP и очередь: lab3/api_and_queue.md
+      - Проверка и результаты: lab3/verification.md
